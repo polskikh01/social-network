@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>Моя страница</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/friends.css">
+	<link rel="stylesheet" type="text/css" href="css/menu.css">
+	<link rel="stylesheet" type="text/css" href="css/profilpage.css">
+	
+	<script src="/js/Script.js"></script>
+</head>
+<body>
+	<th:block th:insert = "~{fragments/Fragments :: menu}"></th:block>
+	
+	<div class="backGround"> </div>
+	
+		<div class="profil_photo">
+			<div class="block_photo">
+				<img th:src="@{${user.info.avatar}}">
+			</div>
+			<div class="edit" th:if = "${myPage}">
+				<button class="edit_butt" onClick = "setActive()">Редактировать</button>
+			</div>
+			
+			<div class="edit" th:if = "${not myPage}">
+				 <button class="edit_butt" onclick = "WriteMessage(this)" th:value = "${user.id}">Написать сообщение</button> 
+                 <th:block th:if="${contact != null}">
+                     <button th:if ="${contact.friendStatus == 'button'}" class="edit_butt" onclick="openUserPanel(this)" th:value ="${user.id}">Добавить в друзья</button>
+                     
+                     <div th:if ="${contact.friendStatus != 'button'}" th:text ="${contact.friendStatus}" class="status"></div>
+
+                 </th:block>
+                 <button th:if="${contact == null}" class="edit_butt" onclick="openUserPanel(this)" th:value ="${user.id}">Добавить в друзья</button>
+                 <th:block th:if = "${admin}">
+                 	 <button th:if="${user.accountNonLocked}" class="edit_butt" onclick = "Block(this, 'block')" th:value = "${user.id}">Заблокировать</button> 
+                	 <button th:if="${not user.accountNonLocked}" class="edit_butt" onclick = "Block(this, 'decline')" th:value = "${user.id}">Разблокировать</button> 
+                 </th:block>
+                
+			</div>
+		</div>
+		
+		<div class="profil_info">
+			<div class="information"  th:if = "${user.accountNonLocked}">
+				<div class="information_fio">
+					<span th:text = "${user.name} + '  ' + ${user.seName}"></span>
+				</div>
+				<div class="information_dan">
+
+                    <ul class="info_row" id = "Info">
+                        <li class="tableElement" th:if="${user.info.about != null}">
+                            <div class="lef lable">
+                                Обо себе
+                            </div>
+                            <div class="labled">
+                                <span th:text="${user.info.about}"></span>
+                            </div>
+                        </li>
+                        <li class="tableElement" th:if="${user.info.date != null}">
+                            <div class="lef lable">
+                                Дата Рождения
+                            </div>
+                            <div class="labled">
+                                <span th:text="${user.info.date}"></span>
+                            </div>
+                        </li>
+                        <li class="tableElement" th:if="${user.info.studyPlace != null}">
+                            <div class="lef lable">
+                                Место учебы
+                            </div>
+                            <div class="labled">
+                                <span th:text="${user.info.studyPlace}"></span>
+                            </div>
+                        </li>
+                        <li class="tableElement" th:if="${user.info.workPlace != null}">
+                            <div class="lef lable">
+                                Место работы
+                            </div>
+                            <div class="labled">
+                                <span th:text="${user.info.workPlace}"></span>
+                            </div>
+                        </li>
+                        <li class="tableElement" th:if="${user.info.hobby != null}">
+                            <div class="lef lable">
+                                Увлечения
+                            </div>
+                            <div class="labled">
+                                <span th:text="${user.info.hobby}"></span>
+                            </div>
+                        </li>
+                    </ul>
+				
+
+                    <form class="info_row" th:action="@{/updateUser}" method="post" id="Options" th:if="${myPage}" enctype="multipart/form-data">
+                        <div class=" tableElement">
+                            <div class="lef lable">
+                                О себе
+                            </div>
+                            <input class="labled" name="about" type="text" th:value="${user.info.about}" />
+                        </div>
+                        <div class=" tableElement">
+                            <div class="lef lable">
+                                Дата Рождения
+                            </div>
+                            <input class="labled" name="date" type="date" />
+                        </div>
+                        <div class=" tableElement">
+                            <div class="lef lable">
+                                Место учебы
+                            </div>
+                            <input class="labled" name="studyPlace" type="text" th:value="${user.info.studyPlace}" />
+                        </div>
+                        <div class=" tableElement">
+                            <div class="lef lable">
+                                Место Работы
+                            </div>
+                            <input class="labled" name="workPlace" type="text" th:value="${user.info.workPlace}" />
+                        </div>
+                        <div class=" tableElement">
+                            <div class="lef lable">
+                                Увлечения
+                            </div>
+                            <input class="labled" name="hobby" type="text" th:value="${user.info.hobby}" />
+                        </div>
+                        <div class=" tableElement">
+                            <div class="lef lable">
+                                Ваше фото(до 1 МБ)
+                            </div>
+                            <input class="labled" name="avatar" type="file"  />
+                        </div>
+                        <div class=" tableElement">
+                            <div class="saveButton">
+                                <input class="save" type="submit" th:value="Сохранить" />
+                            </div>
+
+                        </div>
+
+                    </form>
+                
+                    <form id="Passwords" class="info_row" th:action="@{/changePassword}" method="post" th:if="${myPage}">
+                        <div class=" tableElement">
+                            <div class="lef lable">
+                                Cтарый пароль
+                            </div>
+                            <input class="labled" name="oldPassword" type="password" />
+                        </div>
+
+                        <div class=" tableElement">
+                            <div class="lef lable">
+                                Новый пароль
+                            </div>
+                            <input class="labled" name="newPassword" type="password" />
+                        </div>
+
+                        <div class=" tableElement">
+                            <div class="lef lable">
+                                Потвердите пароль
+                            </div>
+                            <input class="labled" name="confirm" type="password" />
+                        </div>
+
+                        <div class=" tableElement">
+                            <div class="saveButton">
+                                <input class="save" type="submit" th:value="Сохранить" />
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+			</div>
+			<span th:if = "${not user.accountNonLocked}">Данный аккаунт заблокирован</span>
+		</div>
+	<script>
+
+        document.getElementById("Options").style.display = 'none';
+        document.getElementById("Passwords").style.display = 'none';
+        function setActive() {
+            document.getElementById("Options").style.display = 'block';
+            document.getElementById("Passwords").style.display = 'block';
+            document.getElementById("Info").style.display = 'none';
+        }
+    </script>
+</body>
+</html>

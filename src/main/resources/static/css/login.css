@@ -1,0 +1,140 @@
+﻿@charset "UTF-8";
+
+.MainPanel{
+    position:absolute;
+    z-index:2;
+    top:100px;
+    left:800px;
+
+    height:800px;
+
+    width:600px;
+
+    background-color:white;
+    border-radius: 10px;
+}
+
+.buttonsPanel {
+    width: 100%;
+    height: 12%;
+    border-bottom: 2px solid rgb(222, 226, 230);
+    /*background-color: aqua;*/
+    margin: 0 auto 0 auto;
+}
+
+.changeButtonL {
+    width: 49%;
+    height: 100%;
+    float: left;
+    border-right: 2px solid rgb(222, 226, 230);
+    text-align:center;
+    vertical-align:central;
+
+    /*border-style: solid;
+    border-color: gray;
+    border-radius:10px;*/
+}
+.changeButtonR {
+    text-align: center;
+    width: 48%;
+    height: 100%;
+    float: right;
+    /*border-style: solid;
+    border-color: gray;
+    border-radius: 10px;*/
+}
+
+.buttonText{
+   
+    width:100%;
+    height:30%;
+    padding-top: 40px;
+    cursor:pointer;
+
+    font-size: 24px;
+    margin:auto;
+}
+
+.contentPanel{
+    width:100%;
+    height:80%;
+
+}
+
+.bigRow{
+    width:90%;
+    margin: 0 auto 0 auto;
+    height : 12%;
+    padding:5%;
+}
+
+.halfRow {
+    width: 40%;
+    margin: 0 auto 0 auto;
+    height: 12%;
+    padding: 5%;
+    float:left;
+}
+
+.inputField {
+    width: 100%;
+    height: 100%;
+
+    border: 2px solid rgb(222, 226, 230);
+    border-radius: 5px;
+}
+.inputName {
+    width: 40%;
+    /*margin: 0 auto 0 auto;*/
+    height: 100%;
+    float: left;
+    border: 2px solid rgb(222, 226, 230);
+    border-radius: 5px;
+}
+
+.inputSeName {
+    width: 40%;
+    /*margin: 0 auto 0 auto;*/
+    height: 100%;
+    float: right;
+    border: 2px solid rgb(222, 226, 230);
+    border-radius: 5px;
+}
+
+.inputText{
+    border: none;
+    width:98%;
+    padding-left:2%;
+    height:99%;
+    font-size: 20px;
+    background-color:none;
+}
+
+
+.blueSubmitButton {
+    background-color: mediumpurple;
+
+    width: 100%;
+    height: 80%;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    
+
+    font-size: 20px;
+
+    margin: auto;
+}
+
+
+.redSubmitButton {
+    background-color: sandybrown;
+    width: 100%;
+    height: 80%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    margin: auto;
+}
+
+

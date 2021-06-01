@@ -1,0 +1,308 @@
+﻿@charset "UTF-8";
+
+.news{
+	position: relative;
+	/*display: flex;*/
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+	padding: 15px;
+    margin: 10px auto  0px auto;
+    width: 600px;
+    height: 800px;
+	z-index: 1;
+
+    overflow:auto;
+}
+
+
+.left-fixer {
+	display: block;
+}
+
+.left_lable {
+	height: 28px;
+	line-height: 27px;
+	font-size: 17px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.inl_bl {
+	vertical-align: baseline;
+}
+
+.post {
+	padding: 10px;
+	margin: 20px 10px 20px 10px;
+	height: 250px;
+	/*background-color: blueviolet;*/
+	box-shadow: 0 0 5px 2px rgb(108, 0, 159);
+}
+
+.contentPost{
+    padding: 10px;
+	/*margin: 10px;*/
+    border-radius: 10px;
+	height: 120px;
+    display:block;
+    box-sizing: inherit;
+}
+
+.post_head {
+	padding: 10px;
+	/*margin: 10px;*/
+	height: 40px;
+	box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+}
+
+.post_info {
+	margin: 10px;
+	height: 40px;
+	box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+}
+
+.add_comment {
+	position: relative;
+	display: none;
+	margin: auto;
+	padding: 10px;
+	height: 40px;
+	box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+}
+
+.inp_comment {
+	position: absolute;
+	width: 100%;
+	height: 50px;
+	bottom: -300%;
+}
+
+/*.inp_comment:after {
+	cursor: pointer;
+	position: absolute;
+	margin: 2px auto 0 5px;
+	width: 40px;
+	height: 40px;
+	content: ""; 
+    background: url(img/EnterComment.png) no-repeat right center;
+}*/
+
+.inp_comment input {
+	border: 1px solid #dadee3;
+	border-radius: 3px;
+	font-size: 16px;
+	background: #ffffff !important;
+	outline: none;
+	height: 90%;
+	width: 80%;
+    float:left;
+
+	padding-left: 5px;
+	color: black;
+}
+.submitButton{
+    width:10%;
+    height:90%;
+    background:none;
+    border:none;
+}
+
+.submitButton img{
+    width:100%;
+    height:100%;
+}
+.list_comment {
+	position: relative;
+	width: 100%;
+	height: 160px;
+	overflow: auto;
+}
+
+.comment {
+	width: 95%;
+	margin: 0 auto 0 auto; 
+	height: 80px;
+	padding: 5px;
+	box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+}
+
+.comment .fio {
+	margin: 3px;
+	height: 20px;
+	width: 100%;
+	cursor: pointer;
+}
+
+.comment .row {
+	margin: 3px;
+	height: 50px;
+	width: 100%;
+	overflow: auto;
+	word-wrap: break-word;
+}
+
+.post_ph {
+	position: absolute;
+	margin-top: -5px;
+	float:left;
+	width: 50px;
+	height: 50px;
+}
+
+.post_fio {
+	height: 40px;
+	padding-left: 70px;
+}
+
+.post_date{
+    color: #939393;
+    font-size: 12px;
+    display: block;
+    padding-top: 10px;
+}
+
+.post_lod {
+	
+	
+	float: left;
+	width: 160px;
+    height:100%;
+    display:flex;
+    justify-content:space-around;
+}
+
+.post_l {
+    cursor: pointer;
+    height: 100%;
+    width: 50px;
+    background:none;
+    border:none;
+}
+
+.post_d {
+    cursor: pointer;
+    padding-top: 5px;
+    left: 45px;
+    width: 50px;
+    height: 100%;
+    background: none;
+    border: none;
+}
+.rating{
+    height:100%;
+    vertical-align:central;
+    font-size: 24px;
+    margin-top: 10px;
+}
+.post_comment {
+	cursor: pointer;
+	position: relative;
+	margin: 0 auto 5px;
+	width: 50px;
+}
+
+.new_post {
+	position: relative;
+	height: 200px;
+	margin: 10px;
+	box-shadow: 0 0 5px 2px rgb(108, 0, 159);
+}
+
+.sumbi_post {
+	position: absolute;
+	height: 40px;
+	width: 565px;
+	bottom: 0;
+	padding: 8px 8px 8px 8px;
+	box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+}
+
+.sumbi_post_field {
+	width: 95%;
+    padding:10px;
+    height: 100px;
+    border:none;
+
+	vertical-align: top;
+	overflow: auto;
+	/*width: 100%;*/
+	
+	word-wrap: break-word;
+	resize:  none;
+	display: block;
+}
+
+/*::-webkit-scrollbar-thumb {
+background: #FF0000;
+}*/
+
+.placehold {
+	user-select: none;
+	position: relative;
+	cursor: text;
+	pointer-events: none; 
+}
+
+.post_input {
+	max-height: 112px;
+	padding: 0;
+}
+
+.add_post_butt {
+	float: right;
+}
+
+.flat_button {
+	padding: 10px 16px 8px;
+	margin: 4px;
+	font-size: 12px;
+	cursor: pointer;
+	vertical-align: top;
+	line-height: 15px;
+	text-align:center;
+	background-color: rgb(108, 0, 159);
+	color: white;
+	border: 0;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+a {
+	cursor: pointer;
+}
+
+.post_add_media {
+	float: left;
+	position: relative;
+}
+
+.NewsPanel{
+    width:600px;
+    height:1000px;
+    margin:auto;
+}
+
+
+.newsMenu{
+	width: 100%;
+	height: 30px;
+	display:flex;
+	justify-content: space-evenly;
+}
+
+.action{
+    height:130%;
+    width: 20%;
+    
+    border-radius: 10px 10px 0 0 ;
+    background-color:white;
+
+}
+.deleteRef
+{
+	top: -10px;
+	display: block;
+	position:relative;
+	left: 80%;
+	
+}

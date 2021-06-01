@@ -1,0 +1,306 @@
+﻿@charset "UTF-8";
+
+.backGround {
+    background-color: rgb(108, 0, 159);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 85%;
+    z-index: -2;
+}
+
+.message-box, .news {
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    margin: 50px auto 0px auto;
+    /*top: 10%;*/
+    width: 600px;
+    height: 800px;
+}
+
+.input-box{
+  border-radius: 10px;
+  border-color: black;
+  
+  background-color: rgb(220, 220, 220);
+
+  float: left; 
+  margin-left: 10px;
+  /*margin: auto;*/
+  width: 65%;
+  height: 100%;
+}
+
+.enter{
+
+  /*position: relative;
+  margin-left: auto;
+  margin-top: 0px;*/
+  float: left;
+  height: 100%;
+  width: 15%;
+  padding-top: 10px;
+
+  padding-left: 10px;
+}
+
+.title_pip {
+    position: absolute;
+    left: 35%;
+    top: auto;
+    width: 30%;
+    height: 10%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /*text-align: center;*/
+}
+
+.title_ph {
+    float: right;
+    padding-top: 5px;
+    padding-right: 5px;
+    top: 5%;
+    width: 70px;
+    height: 70px;
+}
+
+.photo_ram {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /*background-image: url(img/text.jpg);
+    background-position: center;*/
+    /*background-size: cover;*/
+}
+
+.title_fio {
+    width: 100%;
+    height: 40px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.scrollPanel
+{
+    overflow: scroll;
+    height: 65%;
+    width:100%;
+
+}
+.otherMessage {
+    /*margin-left: 50px;
+    padding-top: 10px;
+    padding-left: 10px;*/
+    padding:2%;
+    width: 95%;
+    display: flex;
+    justify-content: flex-start;
+    /*height: 20%;*/
+}
+
+
+.back_dialog {
+    float: left;
+    padding-left: 5px;
+    padding-top: 5px;
+    width: 70px;
+    height: 70px;
+    left: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+.CircleImage{
+    border-radius : 50%;
+    height:100%;
+    width:100%;
+
+}
+.message {
+    /*margin-left: 50px;
+    padding-top: 10px;
+    padding-left: 10px;*/
+    padding: 2%;
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+    /*height: 20%;*/
+}
+
+.message-Block{
+   display:flex;
+}
+.otherItem{
+    line-break: auto;
+    display: inline-block;
+    padding:10px;
+    background-color: coral;
+    border-radius: 10px;
+    /*display:block;*/
+    box-sizing: inherit;
+    max-width: 70%;
+
+    
+}
+
+.myItem{
+    display: inline-block;
+    padding:10px;
+    background-color: blueviolet;
+    border-radius: 10px;
+    /*display:block;*/
+    box-sizing: inherit;
+    max-width: 70%;
+}
+
+.messageDate{
+    color:gray;
+    font-size:10px;
+    display:block;
+    padding-top:10px;
+}
+.scrollPanel li{
+    width: 100%;
+    height: 15%;
+
+
+}
+.add_file {
+
+  padding-top: 10px; 
+  margin-left:40px;
+  float: left;
+  width: 10%;
+  height: 100%;
+
+}
+
+.headPanel {
+    width: 100%;
+    height: 10%;
+    background-color: #c7c5c2;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+img{
+    min-height: 40px;
+    min-width:40px;
+}
+.button-panel{
+    width: 100%;
+    height: 10%;
+
+    top:auto;
+
+}
+
+
+.Scroll_Dialogs {
+    width: 100%;
+    height: 80%;
+    padding-top:20px;
+    overflow:auto;
+}
+
+.dialog_Button {
+    background-color: #e7e9ff;
+    width: 90%;
+    margin: 0 auto 5px auto;
+    height: 70px;
+    border-style: solid;
+    border-width: thin;
+    border-color: gray;
+    border-radius: 5px;
+}
+
+.friend_Image {
+
+    float: left;
+    height: 60px;
+    width:60px;
+    margin-top: 5px;
+    margin-left: 15px;
+    border-radius: 50%;
+    background-image: url(text.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.friend_Name{
+    margin: 5px 0 0 100px;
+    font-size: 18px;
+}
+
+.LastMessage{
+    margin-top: 15px;
+    margin-left: 100px;
+}
+
+.input-place{
+	resize: none;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(220, 220, 220);
+	border-radius: 10px;
+}
+
+.FileBlock{
+	display: none;
+	position: absolute;
+	background-color: lightskyblue;
+	border-radius: 10px;
+	border-color:black;
+
+	width: 470px;
+	height: 130px;
+    top:  600px;
+
+    padding-left:100px;
+    padding-top:30px;
+
+}
+
+.hidden{
+	display: none;
+}
+
+
+.flat_button {
+    padding: 10px 16px 8px;
+    margin: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    vertical-align: top;
+    line-height: 15px;
+    text-align: center;
+    background-color: rgb(108, 0, 159);
+    color: white;
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+a{
+	color: blue;
+	cursor: pointer;
+    text-decoration: none;
+	
+}
+.Box{
+    width:100px;
+    height:100px;
+}
+
+
+.messageImage{
+    max-width:200px;
+    max-height:200px;
+}
+/*::-webkit-scrollbar {
+width: 0px;
+background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+background: #FF0000;
+}*/

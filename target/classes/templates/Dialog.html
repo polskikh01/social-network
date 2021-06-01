@@ -1,0 +1,154 @@
+﻿<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Диалоги</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+
+	  <link rel="stylesheet" type="text/css"  href="/css/main.css"/>
+	  <link rel="stylesheet"  href="css/menu.css" type="text/css"/>
+	  
+	  
+	  <script type="text/javascript" src="/js/Script.js"></script>
+		<script src="/webjars/jquery/jquery.min.js"></script>
+		<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+		<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
+</head>
+<body>
+    <div class="backGround">
+
+    </div>
+    
+   
+   <th:block  th:if = "${IsDialogList}"th:insert = "~{fragments/Fragments :: menu}"></th:block>
+	
+    <div class="message-box">
+        <div th:if = "${IsDialogList}"class="Scroll_Dialogs" >
+            <div class="dialog_Button" th:each =  "cont : ${Contacts}" onclick =  "OpenDialog(this)" th:value = "${cont.id}">
+                <div class="friend_Image">
+                    <img class="CircleImage" th:src="@{${cont.contact.info.avatar}}" />
+                </div>
+                <div class="friend_Name" th:value = "${cont.id}" >
+                    <span th:text = "${cont.contact.name} + ' ' + ${cont.contact.seName}"></span>
+                </div>
+                <div class="LastMessage">
+                  <span th:text = "${cont.lastMessage}"></span>
+                </div>
+
+            </div>
+
+        </div>
+        
+        <div th:if ="${not IsDialogList}" class = "FileBlock" id = "FilePanel">
+        	<form action = "/Dialogs/file"  method = "post" enctype="multipart/form-data" id = "fileForm">
+        		<input type="file" name = "file">
+        		<input type="text" name = "contactId" th:value = "${ChatName}" class = "hidden">
+        		<input type="text" name = "recipient" th:value = "${Contact.id}" class = "hidden">
+        		<input type="submit" value = "Отправить">
+        	</form>
+        </div>
+        
+        
+    
+        <div th:if="${not IsDialogList}" class="headPanel">
+            <div class="title_pip">
+                <div class="title_fio">
+                    <span th:text ="${Contact.name} + '  ' + ${Contact.seName}"></span>
+                </div>
+            </div>
+            <div class="title_ph">
+                <a href="/"> <img class="CircleImage" th:src="@{${Contact.info.avatar}}" /></a>
+            </div>
+            <div class="back_dialog">
+                <a href="/Dialogs"> <img src="/img/back.png" /></a>
+            </div>
+
+        </div>
+        <div th:if = "${not IsDialogList}" class="scrollPanel" id = "scroll">
+            <div th:each = "message: ${Dialog}" th:class= "${User == message.author.id} ? ${'message'} : ${'otherMessage'}">
+            
+            	
+            	    <div th:if ="${User == message.author.id}" class="messageDate">
+                    		<span th:text = "${message.deltatime}"></span>
+                	</div>
+                	<div th:class = "${User == message.author.id} ? 'myItem' : 'otherItem'"> 
+                   		 <span th:text = ${message.message} th:if = "${message.imageUrl == null}"></span>
+                             <div th:if="${message.imageUrl != null}">
+                                 <img class="messageImage" th:src="@{'/upload/' + ${message.imageUrl}}"   />
+                             </div>
+
+                	</div>
+                	
+                	<div th:unless ="${User == message.author.id}" class="messageDate">
+                    		<span th:text = "${message.deltatime}"></span>
+                	</div>
+               
+
+                	
+                
+            </div>
+
+
+        </div>
+        <div th:if = "${not IsDialogList}" class="button-panel" > 
+
+            <div class="add_file" onclick = "OpenFilePanel()">
+                <img src="/img/add_file.png">
+
+            </div>
+
+            <div class="input-box">
+            	<textarea class="input-place" id = "messageText"></textarea>
+            
+            </div>
+
+            <div class="enter" onclick="sendMessage()">
+                <img src="/img/EnterMessage.png">
+            </div>
+        </div> 
+
+
+       </div>
+
+
+
+		  <div class = "123 "id = "ms" >
+              <div class="messageDate">
+                  Только что
+              </div>
+              
+              <div class="myItem">
+                    
+              </div>
+
+                
+            </div>
+        
+           
+     <div th:if  = "${not IsDialogList}">
+      	<script th:inline="javascript">
+   		var userName = [[${ChatName}]];
+    	var authorId = [[${User}]];
+    	var	recipId = [[${Contact.id}]];
+    	connect(userName, authorId, recipId);
+    	
+		</script>
+     </div>
+   
+   <div th:if  = "${IsDialogList}">
+      	<script th:inline="javascript">
+    	userName = [[${User}]];
+    	console.log(userName);
+		</script>
+     </div>
+
+    <div class="border-menu">
+
+    </div>
+
+    <script>
+        scrollDown();
+    </script>
+</body>
+</html>

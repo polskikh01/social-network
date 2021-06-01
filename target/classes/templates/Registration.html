@@ -1,0 +1,76 @@
+﻿
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Авторизация </title>
+    <meta charset="utf-8">
+
+
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src="js/registration.js"></script>
+</head>
+<body>
+
+
+
+
+    <div class= "backGround"></div>
+
+
+    <div class="MainPanel">
+        <div class=" buttonsPanel">
+            <div class="changeButtonL" id="regist_Button" onclick="OpenRegistration()">
+                <div class="buttonText" >Регистрация</div>
+            </div>
+            <div class="changeButtonR" id="enter_Button" onclick="OpenLogin()">
+                <div class="buttonText">Вход</div>
+            </div>
+
+        </div>
+
+
+
+        <form class="contentPanel" id="Registration"  th:action="@{/Registration}" method="post" >
+            <div class="bigRow">
+                <div class="inputName">
+                    <input class="inputText" name = "name" type="text" placeholder="Имя"required />
+
+                </div>
+
+                <div class="inputSeName">
+                    <input class="inputText" name = "se_name" type="text" placeholder="Фамилия" required/>
+
+                </div>
+            </div>
+            <div class="bigRow">
+                <div class="inputField">
+                    <input class="inputText" name = "username" type="email" placeholder="Электронная почта" required />
+
+                </div>
+            </div>
+            <div class="bigRow">
+                <div class="inputField">
+                    <input class="inputText" name = "passwors" type="password" placeholder="Пароль" required/>
+
+                </div>
+
+            </div>
+            <div class="bigRow">
+                <div class="inputField">
+                    <input class="inputText" name = "submit_password" type="password" placeholder="Подтвердите пароль"required />
+
+                </div>
+
+            </div>
+
+            <div class=" bigRow">
+
+                <input type="submit" class="redSubmitButton" value="Зарегистрироваться!" />
+
+            </div>
+        </form>
+    </div>
+   
+</body>
+</html>

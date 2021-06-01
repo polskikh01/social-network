@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Друзья</title>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/friends.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+
+    <script src="js/Script.js"></script>
+</head>
+<body>
+	
+	
+	<th:block th:insert = "~{fragments/Fragments :: menu}"></th:block>
+	
+	<div class="backGround"> </div>
+	
+	<div class="friends_list">
+		<div class="friends_stat">
+			<div class="fr_tit">
+				<div class="fr_all" onclick="changePage('myFriends')">
+					Всего друзей
+				</div>
+			</div>
+			<div class="fr_tit">
+				<div class="fr_all" onclick="changePage('requests')">
+					Заявки в друзья
+				</div>
+			</div>
+			<button class="flat_button" id="search" onclick="changePage('search')">Найти друзей</button>
+		</div>
+		
+		<div class="fr_list" id="fr_list" th:if ="${type == 'myFriends'}">
+			<div class="fr_list_bl">
+				<div class="fr_user_row" th:each ="friend : ${Friends}">
+					<div class="fr_photo">
+						<img class="fr_photo_img" th:src="@{${friend.contact.info.avatar}}">
+					</div>
+					<div class="fr_user_info">
+						<div class="fr_info_title fr_field">
+                            <a th:href="@{'/user?userId=' + ${friend.contact.id}}"><span th:text="${friend.contact.name}  + ' ' + ${friend.contact.seName}"></span></a>
+						</div>
+						
+						<a th:href ="@{'/Dialogs/person?contactId=' + ${friend.id}}">Написать сообщение</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="r_list" id="r_list"  th:if ="${type == 'requests'}">
+			<div class="fr_list_bl">
+				<div class="fr_user_row" th:each ="req : ${Requests}">
+					<div class="fr_photo">
+						<img class="fr_photo_img" th:src="@{${req.user.info.avatar}}">
+					</div>
+                    <div class="fr_user_info">
+                        <div class="fr_info_title fr_field">
+                            <a th:href="@{'/user?userId=' + ${req.user.id}}"><span th:text="${req.user.name}  + ' ' + ${req.user.seName}"></span></a>
+                        </div>
+                        <button class="flat_button" onclick="acceptRequest(this, 'accept')" th:value="${req.user.id}">Добавить</button>
+                        <button class="flat_button" onclick="decline(this, 'decline')" th:value="${req.user.id}">Отклонить</button>
+                    </div>
+				</div>
+			</div>
+		</div>
+        <form class="r_list" id="fr_list_ch" th:if ="${type == 'search'}" action="/FindFriends" method="post">
+            <div class="search_box">
+                <input type="text" class="search_box" placeholder="Поиск друзей" name="mainString" required>
+                <button class="flat_button" type="submit">Найти</button>
+            </div>
+
+            <div class="ch_opt" id="ch_opt">
+                <div class="ch_opt_head">
+                    Расширенный поиск
+                </div>
+                <div class="ch_opt_par">
+                    <input type="text" placeholder="Увелечения" name="hobby">
+                </div>
+                <div class="ch_opt_par">
+                    <input type="text" placeholder="Место работы" name="workPlace">
+                </div>
+                <div class="ch_opt_par">
+                    <input type="text" placeholder="Место учебы" name="studyPlace">
+                </div>
+
+                <div class="ch_opt_inp">
+                    <button class="flat_button">Найти</button>
+                </div>
+            </div>
+
+            <div class="fr_list_bl">
+                <div class="fr_user_row" th:each ="user :${users}">
+                    <div class="fr_photo">
+                        <img class="fr_photo_img" th:src="@{${user.info.avatar}}">
+                    </div>
+                    <div class="fr_user_info">
+                        <div class="fr_info_title fr_field">
+                            <a th:href ="@{'/user?userId=' + ${user.id}}"><span th:text="${user.name}  + ' ' + ${user.seName}"></span></a>
+                        </div>
+                        <button class="flat_button" onclick="sendAction(this, 'request')" th:value ="${user.id}">Добавить в друзья</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+	</div>
+
+    <script>
+        authorId = [[${ UserId }]];
+        contactConnection();
+    </script>
+</body>
+</html>

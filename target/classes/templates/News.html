@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>Новости</title>
+	
+		<script src="/webjars/jquery/jquery.min.js"></script>
+		<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+		<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+	
+	
+	
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/news.css">
+	<link rel="stylesheet" type="text/css" href="css/menu.css">
+	
+	<script src="js/Script.js"></script>
+</head>
+<body>
+
+
+	
+	<th:block th:insert = "~{fragments/Fragments :: menu}"></th:block>
+
+	<div class="backGround"> </div>
+	
+	
+    <div class="NewsPanel">
+
+	
+      
+		<div class = "newsMenu">
+			<button class="action" onclick="setActive('form', 'scroll')">Добавить новость</button>
+			<button class="action" onclick="showNews('new')">Новое</button>
+			<button class="action" onclick="showNews('best')">Лучшее</button>
+			<button th:if = "${admin}" class="action" onclick="showNews('worst')">Худшее</button>
+		</div>
+        <div class="news" id="scroll">
+
+            <div class="post" th:each ="news : ${News}">
+                <div class="post_head">
+                    <div class="post_ph">
+                        <div class="photo_ram"><img class="CircleImage" th:src = "@{${news.author.info.avatar}}" /> </div>
+                    </div>
+                    <div class="post_fio">
+                        <a th:href="@{'/user?userId=' + ${news.author.id}}"> <span th:text ="${news.author.name} + ' ' + ${news.author.seName}"></span></a>
+                        <div class="post_date">
+                            <span th:text = "${news.deltaTime}"></span>
+                        </div>
+                    </div>
+                    <a th:if ="${admin}"th:href = "@{'/deletePost?id=' + ${news.id}}" class = "deleteRef">Удалить</a>
+                </div>
+                <div class="contentPost">
+                    <span th:text ="${news.text}"></span>
+                </div>
+                <div class="post_info">
+                    <div class="post_lod" th:tag = "${news.isLiked}">
+                        <button class="post_l" th:if = "${not news.isLiked}" th:value = "${news.id}" onclick = "setLike(1, this)" >
+                            <img src="img/like.png" width="40" height="40">
+                        </button>
+                        <div class = "rating" ><span th:text = "${news.rating}" ></span></div>
+                        <button class="post_d" th:if = "${not news.isLiked}" onclick = "setLike(-1, this)" th:value = "${news.id}">
+                            <img src="img/dislike.png" width="40" height="40">
+                        </button>
+                    </div>
+                    <div class="post_comment" onclick="addComment(this)">
+                        <img src="img/comment.png" width="45" height="45">
+                    </div>
+                   	
+                   
+                    <div class="add_comment" style="display: none">
+                        <div class="list_comment">
+                            <div class="comment" th:each ="comment : ${news.comments}">
+                                <div class="fio">
+                                    <a th:href="@{'/user?userId=' + ${comment.author.id}}"> <span th:text="${comment.author.name} + ' ' + ${comment.author.seName}"></span></a>
+                                </div>
+                                <div class="row">
+                                    <span th:text="${comment.text}"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="inp_comment">
+                            <input type="text" placeholder="Написать комментарий...">
+                            <button type="submit" class="submitButton" th:value = "${news.id}" onclick="setComment(this)"><img src="/img/EnterComment.png"  /></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment" id="example" style="display:none">
+                <div class="fio">
+                    <a href="/"></a>
+                </div>
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
+        <div class="news" id="form" style="display: none">
+
+            <form class="new_post" th:action="@{/News/addNew}" method="post">
+                <textarea class="sumbi_post_field" placeholder="Введите ваш текст..." name="text"></textarea>
+                <div class="sumbi_post" >
+                    <div class="post_add_media">
+                        
+                    </div>
+                    <div class="add_post_butt">
+                        <button type="submit" class="flat_button">Опубликовать</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+
+    </div>
+   
+    
+    
+    <script>
+
+    	likesConnection();
+        newsConnection();
+        authorId = [[${ User }]]
+       
+    </script>
+</body>
+</html>
+</DOCTYPE>
